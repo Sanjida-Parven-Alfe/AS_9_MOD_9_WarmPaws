@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,7 +35,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         toast.success("Login Successful ✅");
-        navigate(from, { replace: true }); // redirect to original page
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -50,7 +49,7 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((res) => {
         toast.success("Google login successful");
-        navigate(from, { replace: true }); // redirect to original page
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -58,25 +57,14 @@ const Login = () => {
       });
   };
 
-  // Forget Password
+  // Forget Password Redirect
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
-    if (!email) {
-      toast.error("Please enter your email first.");
-      return;
-    }
-
-    sendPasswordResetEmail(auth, email)
-      .then(() => toast.success("Password reset email sent ✅"))
-      .catch((e) => {
-        console.error(e);
-        toast.error(e.message);
-      });
+    navigate("/forget-password", { state: { email } });
   };
 
   return (
     <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-gradient-to-br from-amber-100 via-orange-100 to-rose-50 relative overflow-hidden">
-      {/* Animated glow orbs */}
       <div className="absolute inset-0">
         <div className="absolute w-72 h-72 bg-pink-300/30 rounded-full blur-xl top-10 left-10 animate-pulse"></div>
         <div className="absolute w-72 h-72 bg-purple-300/30 rounded-full blur-xl bottom-10 right-10 animate-pulse"></div>
@@ -84,7 +72,6 @@ const Login = () => {
 
       <MyContainer>
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-amber-800">
-          {/* Left section */}
           <div className="max-w-lg text-center lg:text-left">
             <h1 className="text-5xl font-extrabold drop-shadow-lg">
               Welcome Back
@@ -95,14 +82,12 @@ const Login = () => {
             </p>
           </div>
 
-          {/* Login card */}
           <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
             <form onSubmit={handleSignin} className="space-y-5">
               <h2 className="text-2xl font-semibold mb-2 text-center text-amber-950">
                 Sign In
               </h2>
 
-              {/* Email */}
               <div>
                 <label className="block text-sm mb-1">Email</label>
                 <input
@@ -114,7 +99,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Password */}
               <div className="relative">
                 <label className="block text-sm mb-1">Password</label>
                 <div className="relative">
@@ -135,7 +119,6 @@ const Login = () => {
                 </div>
               </div>
 
-              {/* Forget Password & Login */}
               <div className="flex flex-col gap-2 items-start">
                 <button
                   type="button"
@@ -149,14 +132,12 @@ const Login = () => {
                 </button>
               </div>
 
-              {/* Divider */}
               <div className="flex items-center justify-center gap-2 my-2">
                 <div className="h-px w-16 bg-cyan-950/30"></div>
                 <span className="text-sm text-cyan-950/70">or</span>
                 <div className="h-px w-16 bg-cyan-950/30"></div>
               </div>
 
-              {/* Google Signin */}
               <button
                 type="button"
                 onClick={handleGoogleSignin}
@@ -170,7 +151,6 @@ const Login = () => {
                 Continue with Google
               </button>
 
-              {/* Signup Link */}
               <p className="text-center text-sm text-gray-700/80 mt-3">
                 Don’t have an account?{" "}
                 <Link

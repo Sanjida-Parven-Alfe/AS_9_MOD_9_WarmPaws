@@ -7,7 +7,7 @@ import SignUp from "../pages/Auth/SignUp";
 import Login from "../pages/Auth/Login";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
-
+import ForgetPassword from "../pages/Auth/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "Login",
         element: <Login />,
+      },
+      {
+        path: "forget-password", // নতুন route
+        element: <ForgetPassword />,
       },
       {
         path: "services/:serviceId",
