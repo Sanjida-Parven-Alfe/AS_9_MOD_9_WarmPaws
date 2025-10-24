@@ -52,9 +52,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex items-center cursor-pointer">
-              <img src={Logo} className="w-[50px] h-[50px]" alt="" />
-              <a className="text-3xl text-black font-bold px-[5px]">
-                <span className="text-4xl font-extrabold bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
+              <img src={Logo} className="w-[30px] h-[30px] md:w-[50px] md:h-[50px]" alt="" />
+              <a className="text-lg md:text-3xl text-black font-bold px-[5px]">
+                <span className="text-xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
                   Warm
                 </span>
                 Paws
