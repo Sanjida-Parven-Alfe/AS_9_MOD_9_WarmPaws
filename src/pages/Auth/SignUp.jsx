@@ -16,7 +16,6 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // ✅ Email Signup Handler
   const handleSignup = (e) => {
     e.preventDefault();
     const name = e.target.name?.value;
@@ -24,7 +23,6 @@ const SignUp = () => {
     const photo = e.target.photo?.value;
     const password = e.target.password?.value;
 
-    // ✅ Password Validation
     if (!/[A-Z]/.test(password)) {
       setPasswordError("Password must contain at least one uppercase letter.");
       return;
@@ -39,37 +37,30 @@ const SignUp = () => {
     }
     setPasswordError("");
 
-    // ✅ Firebase Signup
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        console.log("User Created:", res.user);
         toast.success("Signup Successful 🎉");
-        navigate("/"); // redirect to home
+        navigate("/");
       })
       .catch((e) => {
-        console.error(e);
         toast.error(e.message);
       });
   };
 
-  // ✅ Google Sign-in Handler
   const handleGoogleSignin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((res) => {
-        console.log("Google User:", res.user);
         toast.success("Logged in with Google ✅");
-        navigate("/"); // redirect to home
+        navigate("/");
       })
       .catch((e) => {
-        console.error(e);
         toast.error(e.message);
       });
   };
 
   return (
     <div className="min-h-[96vh] flex items-center justify-center bg-gradient-to-br from-orange-200 via-orange-300 to-white relative overflow-hidden">
-      {/* Animated floating circles */}
       <div className="absolute inset-0">
         <div className="absolute w-72 h-72 bg-pink-400/30 rounded-full blur-2xl top-10 left-10 animate-pulse"></div>
         <div className="absolute w-72 h-72 bg-purple-400/30 rounded-full blur-2xl bottom-10 right-10 animate-pulse"></div>
@@ -92,50 +83,48 @@ const SignUp = () => {
               Sign Up
             </h2>
 
-            <form onSubmit={handleSignup} className="space-y-4">
-              {/* Name */}
+            <form onSubmit={handleSignup} className="space-y-4" autoComplete="off">
               <div>
                 <label className="block text-sm font-medium mb-1">Name</label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Enter Your Name"
+                  autoComplete="off"
                   className="input input-bordered w-full bg-white/20 text-black placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-amber-800"
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
                 <input
                   type="email"
                   name="email"
                   placeholder="example@email.com"
+                  autoComplete="off"
                   className="input input-bordered w-full bg-white/20 text-black placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-amber-800"
                 />
               </div>
 
-              {/* Photo URL */}
               <div>
                 <label className="block text-sm font-medium mb-1">Photo</label>
                 <input
                   type="text"
                   name="photo"
                   placeholder="Your photo URL here"
+                  autoComplete="off"
                   className="input input-bordered w-full bg-white/20 text-black placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-amber-800"
                 />
               </div>
 
-              {/* Password with Show/Hide */}
               <div className="relative">
-                <label className="block text-sm font-medium mb-1">
-                  Password
-                </label>
+                <label className="block text-sm font-medium mb-1">Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="••••••••"
+                    autoComplete="new-password"
                     className="input input-bordered w-full bg-white/20 text-black placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-amber-800 pr-10 relative z-10"
                   />
                   <button
@@ -143,7 +132,7 @@ const SignUp = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-900/70 hover:text-amber-900 z-20"
                   >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    {showPassword ?  <FaEye /> :<FaEyeSlash />}
                   </button>
                 </div>
                 {passwordError && (
@@ -151,19 +140,14 @@ const SignUp = () => {
                 )}
               </div>
 
-              {/* Register Button */}
-              <button type="submit" className="my-btn">
-                Register
-              </button>
+              <button type="submit" className="my-btn">Register</button>
 
-              {/* Divider */}
               <div className="flex items-center justify-center gap-2 my-2">
                 <div className="h-px w-16 bg-cyan-950/30"></div>
                 <span className="text-sm text-cyan-950/70">or</span>
                 <div className="h-px w-16 bg-cyan-950/30"></div>
               </div>
 
-              {/* Google Signin */}
               <button
                 type="button"
                 onClick={handleGoogleSignin}
@@ -177,7 +161,6 @@ const SignUp = () => {
                 Continue with Google
               </button>
 
-              {/* Login Link */}
               <div className="text-center mt-3">
                 <p className="text-sm text-gray-700/80">
                   Already have an account?{" "}
