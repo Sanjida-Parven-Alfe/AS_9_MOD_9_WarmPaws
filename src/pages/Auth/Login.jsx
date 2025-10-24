@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import MyContainer from "../../components/MyContainer/MyContainer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { auth } from "../../firebase/firebase.config";
@@ -14,9 +14,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const emailRef = useRef();
   const passwordRef = useRef();
   const [show, setShow] = useState(false);
+
+  // redirect user to the page they wanted before login
+  const from = location.state?.from?.pathname || "/";
 
   // Email/Password Login
   const handleSignin = (e) => {
@@ -32,11 +36,11 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         toast.success("Login Successful ✅");
-        navigate("/"); // Home page এ redirect
+        navigate(from, { replace: true }); // redirect to original page
       })
       .catch((err) => {
         console.error(err);
-        toast.error(err.message); // এখানে e.massage নয়, err.message
+        toast.error(err.message);
       });
   };
 
@@ -45,9 +49,8 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((res) => {
-        console.log(res.user);
         toast.success("Google login successful");
-        navigate("/"); // Navigate to home
+        navigate(from, { replace: true }); // redirect to original page
       })
       .catch((err) => {
         console.error(err);

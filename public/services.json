@@ -1,7 +1,7 @@
 [
   {
     "serviceId": 1,
-    "serviceName": "Winter Coat Fitting for Dogs",
+    "serviceName": "Winter Coat for Dogs",
     "providerName": "PawCare Studio",
     "providerEmail": "info@pawcare.com",
     "price": 25,
@@ -13,7 +13,7 @@
   },
   {
     "serviceId": 2,
-    "serviceName": "Winter Grooming & Paw Treatment",
+    "serviceName": "Winter Paw Treatment",
     "providerName": "CozyPets Grooming",
     "providerEmail": "hello@cozypets.com",
     "price": 30,
@@ -25,7 +25,7 @@
   },
   {
     "serviceId": 3,
-    "serviceName": "Warm Bedding & Blanket Service",
+    "serviceName": "Warm Bedding Service",
     "providerName": "SnuggleNest Pets",
     "providerEmail": "contact@snugglenest.com",
     "price": 20,
@@ -37,7 +37,7 @@
   },
   {
     "serviceId": 4,
-    "serviceName": "Winter Health Checkup for Pets",
+    "serviceName": "Health Checkup for Pets",
     "providerName": "HealthyTail Clinic",
     "providerEmail": "care@healthytail.com",
     "price": 35,
@@ -73,7 +73,7 @@
   },
   {
     "serviceId": 7,
-    "serviceName": "Winter Bath & Fur Dry Service",
+    "serviceName": "Bath & Dry Service",
     "providerName": "PetSpa Hub",
     "providerEmail": "support@petspahub.com",
     "price": 32,
@@ -85,7 +85,7 @@
   },
   {
     "serviceId": 8,
-    "serviceName": "Heated Pet Shelter Setup",
+    "serviceName": "Pet Shelter Setup",
     "providerName": "WarmHaven Pets",
     "providerEmail": "contact@warmhaven.com",
     "price": 60,
@@ -97,7 +97,7 @@
   },
   {
     "serviceId": 9,
-    "serviceName": "Winter Paw Protection Booties",
+    "serviceName": "Paw Protection Booties",
     "providerName": "PawShield Wear",
     "providerEmail": "info@pawshield.com",
     "price": 22,
@@ -109,7 +109,7 @@
   },
   {
     "serviceId": 10,
-    "serviceName": "Winter Exercise & Walk Care",
+    "serviceName": "Exercise & Walk Care",
     "providerName": "HappyTail Walkers",
     "providerEmail": "hello@happytail.com",
     "price": 15,
@@ -121,7 +121,7 @@
   },
   {
     "serviceId": 11,
-    "serviceName": "Senior Pet Winter Comfort Plan",
+    "serviceName": "Winter Comfort Plan",
     "providerName": "GoldenPaws Care",
     "providerEmail": "support@goldenpaws.com",
     "price": 40,
