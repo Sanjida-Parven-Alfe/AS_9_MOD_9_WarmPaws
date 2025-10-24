@@ -11,9 +11,9 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="navbar bg-white w-full sticky top-0 z-50 shadow-md">
       <MyContainer>
-        <div className="navbar sticky top-0 z-50 bg-white">
+        <div className="navbar bg-white w-full sticky top-0 z-50">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -101,14 +101,14 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="btn font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
+                  className="btn w-20 font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
                 >
                   Login
                 </Link>
 
                 <Link
                   to="/signup"
-                  className="btn font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg"
+                  className="btn w-20 font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg"
                 >
                   SignUp
                 </Link>
