@@ -1,20 +1,75 @@
-import React, { useRef } from "react";
-import { Link } from "react-router";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import MyContainer from "../../components/MyContainer/MyContainer";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { auth } from "../../firebase/firebase.config";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [show, setShow] = useState(false);
 
+  // Email/Password Login
   const handleSignin = (e) => {
     e.preventDefault();
-    console.log(emailRef.current.value, passwordRef.current.value);
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (!email || !password) {
+      toast.error("Please enter both email and password");
+      return;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((res) => {
+        toast.success("Login Successful ✅");
+        navigate("/"); // Home page এ redirect
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message); // এখানে e.massage নয়, err.message
+      });
   };
 
-  const handleGoogleSignin = () => {};
-  const handleSignout = () => {};
-  const handleForgetPassword = () => {};
-  const handleGithubSignin = () => {};
+  // Google Login
+  const handleGoogleSignin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Google login successful");
+        navigate("/"); // Navigate to home
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message);
+      });
+  };
+
+  // Forget Password
+  const handleForgetPassword = () => {
+    const email = emailRef.current.value;
+    if (!email) {
+      toast.error("Please enter your email first.");
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => toast.success("Password reset email sent ✅"))
+      .catch((e) => {
+        console.error(e);
+        toast.error(e.message);
+      });
+  };
 
   return (
     <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-gradient-to-br from-amber-100 via-orange-100 to-rose-50 relative overflow-hidden">
@@ -31,7 +86,7 @@ const Login = () => {
             <h1 className="text-5xl font-extrabold drop-shadow-lg">
               Welcome Back
             </h1>
-            <p className="mt-4 text-lg text-cyan-950/80  leading-relaxed">
+            <p className="mt-4 text-lg text-cyan-950/80 leading-relaxed">
               Sign in to continue your journey. Manage your account, explore new
               features, and more.
             </p>
@@ -44,42 +99,49 @@ const Login = () => {
                 Sign In
               </h2>
 
+              {/* Email */}
               <div>
                 <label className="block text-sm mb-1">Email</label>
                 <input
                   type="email"
                   name="email"
                   ref={emailRef}
-                  // value={email}
-                  // onChange={(e) => setEmail(e.target.value)}
                   placeholder="example@email.com"
                   className="input input-bordered w-full bg-white/20 text-black placeholder-gray-400/60 focus:outline-none focus:ring-2 focus:ring-amber-800"
                 />
               </div>
 
+              {/* Password */}
               <div className="relative">
                 <label className="block text-sm mb-1">Password</label>
-                <input
-                  type={"text"}
-                  name="password"
-                  placeholder="••••••••"
-                  className="input input-bordered w-full bg-white/20 text-black placeholder-gray-400/60 focus:outline-none focus:ring-2 focus:ring-amber-800"
-                />
+                <div className="relative">
+                  <input
+                    type={show ? "text" : "password"}
+                    name="password"
+                    ref={passwordRef}
+                    placeholder="••••••••"
+                    className="input input-bordered w-full bg-white/20 text-black placeholder-gray-400/60 focus:outline-none focus:ring-2 focus:ring-amber-800 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShow(!show)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-900/70 hover:text-amber-900 z-20"
+                  >
+                    {show ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
               </div>
 
+              {/* Forget Password & Login */}
               <div className="flex flex-col gap-2 items-start">
                 <button
+                  type="button"
                   className="hover:underline cursor-pointer pb-[20px]"
                   onClick={handleForgetPassword}
-                  type="button"
                 >
                   Forget password?
                 </button>
-
-                <button
-                  type="submit"
-                  className="my-btn"
-                >
+                <button type="submit" className="my-btn">
                   Login
                 </button>
               </div>
@@ -105,20 +167,7 @@ const Login = () => {
                 Continue with Google
               </button>
 
-              {/* Github Signin */}
-              <button
-                type="button"
-                onClick={handleGithubSignin}
-                className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
-              >
-                <img
-                  src="https://img.icons8.com/fluency/48/github.png"
-                  alt="google"
-                  className="w-5 h-5"
-                />
-                Continue with Github
-              </button>
-
+              {/* Signup Link */}
               <p className="text-center text-sm text-gray-700/80 mt-3">
                 Don’t have an account?{" "}
                 <Link
