@@ -1,17 +1,15 @@
-// AuthProvider.jsx
 import React, { useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import AuthContext from "./AuthContext";
+import { toast } from "react-hot-toast"; // ✅ import toast
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Firebase auth state listener
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // Ensure latest profile info is fetched
         await currentUser.reload(); 
         setUser(auth.currentUser);
       } else {
@@ -19,11 +17,17 @@ const AuthProvider = ({ children }) => {
       }
     });
 
-    return () => unsubscribe(); // cleanup
+    return () => unsubscribe();
   }, []);
 
   const logout = () => {
-    signOut(auth);
+    signOut(auth)
+      .then(() => {
+        toast.success("Logged out successfully ✅"); // ✅ logout হলে toast
+      })
+      .catch((err) => {
+        toast.error("Failed to logout ❌");
+      });
   };
 
   return (

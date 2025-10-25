@@ -11,11 +11,15 @@ const Profile = () => {
   const [photoURL, setPhotoURL] = useState("");
   const [updating, setUpdating] = useState(false);
 
-  // ✅ Update local state whenever user changes
+  // ✅ Update local state whenever user changes (including logout)
   useEffect(() => {
     if (user) {
       setName(user.displayName || "");
       setPhotoURL(user.photoURL || "");
+    } else {
+      // user null হলে সব empty set করবে
+      setName("");
+      setPhotoURL("");
     }
   }, [user]);
 
@@ -78,7 +82,7 @@ const Profile = () => {
             </label>
             <input
               type="email"
-              value={user?.email}
+              value={user?.email || ""}
               disabled
               className="w-full border border-gray-300 rounded px-3 py-2 text-amber-900 bg-gray-100"
             />
@@ -99,7 +103,7 @@ const Profile = () => {
 
           <button
             onClick={handleUpdateProfile}
-            disabled={updating}
+            disabled={updating || !user} // user না থাকলে update button disabled
             className="mt-4 bg-amber-600 text-white px-6 py-2 rounded hover:bg-amber-700 transition"
           >
             {updating ? "Updating..." : "Update Profile"}
