@@ -5,10 +5,10 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
@@ -38,9 +38,19 @@ const SignUp = () => {
     setPasswordError("");
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        toast.success("Signup Successful 🎉");
-        navigate("/");
+      .then((userCredential) => {
+        // ✅ Update displayName & photoURL
+        updateProfile(userCredential.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            navigate("/", { state: { toastMessage: "Signup Successful ✅" } });
+          })
+          .catch((err) => {
+            console.error("Profile update failed:", err);
+            toast.error("Failed to set profile info");
+          });
       })
       .catch((e) => {
         toast.error(e.message);
@@ -50,9 +60,8 @@ const SignUp = () => {
   const handleGoogleSignin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((res) => {
-        toast.success("Logged in with Google ✅");
-        navigate("/");
+      .then(() => {
+        navigate("/", { state: { toastMessage: "Login Successful ✅" } });
       })
       .catch((e) => {
         toast.error(e.message);
@@ -61,11 +70,6 @@ const SignUp = () => {
 
   return (
     <div className="min-h-[96vh] flex items-center justify-center bg-gradient-to-br from-orange-200 via-orange-300 to-white relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute w-72 h-72 bg-pink-400/30 rounded-full blur-2xl top-10 left-10 animate-pulse"></div>
-        <div className="absolute w-72 h-72 bg-purple-400/30 rounded-full blur-2xl bottom-10 right-10 animate-pulse"></div>
-      </div>
-
       <MyContainer>
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-amber-800">
           <div className="max-w-lg text-center lg:text-left">
@@ -132,7 +136,7 @@ const SignUp = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-900/70 hover:text-amber-900 z-20"
                   >
-                    {showPassword ?  <FaEye /> :<FaEyeSlash />}
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
                   </button>
                 </div>
                 {passwordError && (

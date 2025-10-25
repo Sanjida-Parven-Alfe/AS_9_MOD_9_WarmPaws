@@ -8,10 +8,18 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    // Firebase auth state listener
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        // Ensure latest profile info is fetched
+        await currentUser.reload(); 
+        setUser(auth.currentUser);
+      } else {
+        setUser(null);
+      }
     });
-    return () => unsubscribe();
+
+    return () => unsubscribe(); // cleanup
   }, []);
 
   const logout = () => {

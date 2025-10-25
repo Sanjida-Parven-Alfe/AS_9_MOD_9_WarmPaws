@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 import HeroSlider from "../../components/HeroSlider/HeroSlider";
 import PopularServices from "../../components/PopularServices/PopularServices";
 import WinterCareTips from "../../components/WinterCareTips/WinterCareTips";
@@ -6,27 +8,24 @@ import ExpertVets from "../../components/ExpertVets/ExpertVets";
 import "animate.css";
 
 const HomePage = () => {
+  const location = useLocation();
+  const hasShownToast = useRef(false); 
+
+  useEffect(() => {
+    if (location.state?.toastMessage && !hasShownToast.current) {
+      toast.success(location.state.toastMessage);
+      hasShownToast.current = true; 
+      window.history.replaceState({}, document.title); 
+    }
+  }, [location.state]);
+
   return (
     <div>
-      {/* Hero Slider */}
-      <div className="animate__animated animate__slideInDown animate__faster">
         <HeroSlider />
-      </div>
-
-      {/* Popular Services */}
-      <div className="animate__animated animate__slideInUp animate__delay-500ms">
         <PopularServices />
-      </div>
-
-      {/* Winter Care Tips */}
-      <div className="animate__animated animate__slideInDown animate__delay-1000ms">
         <WinterCareTips />
-      </div>
-
-      {/* Expert Vets */}
-      <div className="animate__animated animate__slideInUp animate__delay-1500ms">
         <ExpertVets />
-      </div>
+
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,9 +7,17 @@ import { updateProfile } from "firebase/auth";
 const Profile = () => {
   const { user } = useContext(AuthContext);
 
-  const [name, setName] = useState(user?.displayName || "");
-  const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [name, setName] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [updating, setUpdating] = useState(false);
+
+  // ✅ Update local state whenever user changes
+  useEffect(() => {
+    if (user) {
+      setName(user.displayName || "");
+      setPhotoURL(user.photoURL || "");
+    }
+  }, [user]);
 
   const handleUpdateProfile = () => {
     if (!name) {
