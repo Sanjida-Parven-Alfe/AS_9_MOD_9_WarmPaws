@@ -5,7 +5,7 @@ import Logo from "../../assets/Pet_Care_Logo_V3.png";
 import MyLink from "../MyLink/MyLink";
 import AuthContext from "../../Context/AuthContext";
 import Logoutimg from "../../assets/logout.png";
-import DefaultAvatar from "../../assets/account.png"; 
+import DefaultAvatar from "../../assets/account.png";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -51,15 +51,20 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className="flex items-center cursor-pointer">
-              <img src={Logo} className="w-[30px] h-[30px] md:w-[50px] md:h-[50px]" alt="" />
-              <a className="text-lg md:text-3xl text-black font-bold px-[5px]">
+
+            <Link to="/" className="flex items-center cursor-pointer">
+              <img
+                src={Logo}
+                className="w-[30px] h-[30px] md:w-[50px] md:h-[50px]"
+                alt="WarmPaws Logo"
+              />
+              <span className="text-lg md:text-3xl text-black font-bold px-[5px]">
                 <span className="text-xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
                   Warm
                 </span>
                 Paws
-              </a>
-            </div>
+              </span>
+            </Link>
           </div>
 
           <div className="navbar-center hidden lg:flex">

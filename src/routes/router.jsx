@@ -8,6 +8,8 @@ import Login from "../pages/Auth/Login";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import ForgetPassword from "../pages/Auth/ForgetPassword";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+
 
 const router = createBrowserRouter([
   {
@@ -15,15 +17,15 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        index: true, // default route -> "/"
+        index: true, 
         element: <HomePage />,
       },
       {
-        path: "services", // route -> "/services"
+        path: "services", 
         element: <Services />,
       },
       {
-        path: "profile", // route -> "/profile"
+        path: "profile", 
         element: <Profile />,
       },
       {
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
             <ServiceDetails />
           </PrivateRouter>
         ),
+      },
+      {
+        path: "*",  
+        element: <ErrorPage />,
       },
     ],
   },
