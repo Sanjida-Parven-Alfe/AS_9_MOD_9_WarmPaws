@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
+  // Login থেকে path state দিয়ে email নিলে pre-fill হবে
   useEffect(() => {
     if (location.state?.email) {
       setEmail(location.state.email);
@@ -12,6 +14,11 @@ const ForgetPassword = () => {
   }, [location.state]);
 
   const handleReset = () => {
+    if (!email) {
+      alert("Please enter your email first.");
+      return;
+    }
+    // Gmail open
     window.open("https://mail.google.com/", "_blank");
   };
 

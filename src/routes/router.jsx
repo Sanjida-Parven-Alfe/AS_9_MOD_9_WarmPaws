@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "forget-password", // নতুন route
+        path: "forget-password", 
         element: <ForgetPassword />,
       },
       {

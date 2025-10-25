@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 
@@ -29,7 +28,6 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        // ✅ শুধু navigate করবে, toast দেখাবে না
         navigate("/", { state: { toastMessage: "Login Successful ✅" } });
       })
       .catch((err) => {
@@ -41,7 +39,6 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(() => {
-        // ✅ শুধু navigate করবে, toast দেখাবে না
         navigate("/", { state: { toastMessage: "Login Successful ✅" } });
       })
       .catch((err) => {
@@ -49,16 +46,10 @@ const Login = () => {
       });
   };
 
+  // 🔹 Updated Forget Password handler
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
-    if (!email) {
-      toast.error("Please enter your email first.");
-      return;
-    }
-
-    sendPasswordResetEmail(auth, email)
-      .then(() => toast.success("Password reset email sent ✅"))
-      .catch((e) => toast.error(e.message));
+    navigate("/forget-password", { state: { email } });
   };
 
   return (
