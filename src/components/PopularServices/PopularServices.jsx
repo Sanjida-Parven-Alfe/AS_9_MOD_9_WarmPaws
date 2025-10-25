@@ -9,6 +9,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination, Autoplay } from "swiper/modules";
 
+
 const PopularServices = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,8 +28,8 @@ const PopularServices = () => {
   }, []);
 
   return (
-    <section className="py-12 px-4 pb-20 bg-[#ece7df] sm:px-10">
-      <h2 className="text-3xl sm:text-4xl text-amber-950 font-bold text-center mb-8">
+    <section className="py-12 px-4 pb-20 bg-[#ece7df] sm:px-10 ">
+      <h2 className="text-3xl sm:text-4xl text-amber-950 font-bold text-center mb-8 ">
         Popular Winter Care Services
       </h2>
 
