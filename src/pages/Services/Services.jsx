@@ -1,4 +1,3 @@
-// src/pages/Services/Services.jsx
 import React, { useEffect, useState } from "react";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 import { Link } from "react-router-dom";
@@ -29,8 +28,8 @@ const Services = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-12 px-4 sm:px-10">
-      <h1 className="text-3xl sm:text-4xl font-bold text-amber-950 text-center mb-8">
+    <div className="max-w-full mx-0 bg-amber-50 py-20 px-4 sm:px-40">
+      <h1 className="text-3xl sm:text-4xl font-bold text-amber-950 text-center mb-10">
         Our Winter Pet Care Services
       </h1>
 

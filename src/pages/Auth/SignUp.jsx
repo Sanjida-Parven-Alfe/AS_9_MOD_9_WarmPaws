@@ -10,6 +10,7 @@ import {
 import { auth } from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import signupimage from "../../assets/signupimage.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,7 +40,6 @@ const SignUp = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // ✅ Update displayName & photoURL
         updateProfile(userCredential.user, {
           displayName: name,
           photoURL: photo,
@@ -72,14 +72,17 @@ const SignUp = () => {
     <div className="min-h-[96vh] flex items-center justify-center bg-gradient-to-br from-orange-200 via-orange-300 to-white relative overflow-hidden">
       <MyContainer>
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-amber-800">
-          <div className="max-w-lg text-center lg:text-left">
-            <h1 className="text-5xl font-extrabold drop-shadow-lg">
-              Create Your Account
-            </h1>
-            <p className="mt-4 text-lg text-cyan-950/80 leading-relaxed">
-              Join our community and unlock exclusive features. Your journey
-              begins here!
-            </p>
+          <div className="max-w-lg text-center flex flex-col justify-center items-center lg:text-left">
+            <img src={signupimage} alt="" />
+            <div>
+              <h1 className="text-5xl font-extrabold drop-shadow-lg">
+                Create Your Account
+              </h1>
+              <p className="mt-4 text-lg text-cyan-950/80 leading-relaxed">
+                Join our community and unlock exclusive features. Your journey
+                begins here!
+              </p>
+            </div>
           </div>
 
           <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
@@ -87,7 +90,11 @@ const SignUp = () => {
               Sign Up
             </h2>
 
-            <form onSubmit={handleSignup} className="space-y-4" autoComplete="off">
+            <form
+              onSubmit={handleSignup}
+              className="space-y-4"
+              autoComplete="off"
+            >
               <div>
                 <label className="block text-sm font-medium mb-1">Name</label>
                 <input
@@ -122,7 +129,9 @@ const SignUp = () => {
               </div>
 
               <div className="relative">
-                <label className="block text-sm font-medium mb-1">Password</label>
+                <label className="block text-sm font-medium mb-1">
+                  Password
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
@@ -144,7 +153,9 @@ const SignUp = () => {
                 )}
               </div>
 
-              <button type="submit" className="my-btn">Register</button>
+              <button type="submit" className="my-btn">
+                Register
+              </button>
 
               <div className="flex items-center justify-center gap-2 my-2">
                 <div className="h-px w-16 bg-cyan-950/30"></div>

@@ -68,7 +68,7 @@ const HeroSlider = () => {
                 className="absolute inset-0 w-full h-full object-cover scale-105 brightness-90 transition-transform duration-[4000ms] ease-in-out"
               />
 
-              {/* Cinematic Overlay */}
+              
               <div className="absolute inset-0 bg-black/55 backdrop-blur-[3px]" />
 
               {/* Caption Content */}
@@ -96,7 +96,7 @@ const HeroSlider = () => {
                 </div>
               </div>
 
-              {/* Inner Shadow Frame */}
+              
               <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.7)] rounded-none" />
             </div>
           </SwiperSlide>

@@ -6,7 +6,6 @@ const ForgetPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
-  // Login থেকে path state দিয়ে email নিলে pre-fill হবে
   useEffect(() => {
     if (location.state?.email) {
       setEmail(location.state.email);

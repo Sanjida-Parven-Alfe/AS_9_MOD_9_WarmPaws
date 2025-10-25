@@ -1,6 +1,5 @@
 import React from "react";
 
-// Example fake data
 const tipsData = [
   {
     id: 1,

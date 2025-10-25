@@ -5,7 +5,7 @@ const ErrorPage = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate("/"); // Home route-এ redirect
+    navigate("/"); 
   };
 
   return (

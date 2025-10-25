@@ -1,8 +1,6 @@
-// src/components/PopularServices/PopularServices.jsx
 import React, { useEffect, useState } from "react";
 import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
-// Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -39,13 +37,13 @@ const PopularServices = () => {
         <p className="text-center text-red-500">No services found.</p>
       ) : (
         <Swiper
-          slidesPerView={4} // default 4 slides
+          slidesPerView={4} 
           spaceBetween={20}
           freeMode={true}
           loop={true}
           autoplay={{
             delay: 4000, 
-            disableOnInteraction: false, // user swipe-এর পরও চলবে
+            disableOnInteraction: false, 
           }}
           pagination={{ clickable: true }}
           modules={[FreeMode, Pagination, Autoplay]}

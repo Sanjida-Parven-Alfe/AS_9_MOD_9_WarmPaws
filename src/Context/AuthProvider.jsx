@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import AuthContext from "./AuthContext";
-import { toast } from "react-hot-toast"; // ✅ import toast
+import { toast } from "react-hot-toast"; 
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     signOut(auth)
       .then(() => {
-        toast.success("Logged out successfully ✅"); // ✅ logout হলে toast
+        toast.success("Logged out successfully ✅"); 
       })
       .catch((err) => {
         toast.error("Failed to logout ❌");

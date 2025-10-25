@@ -9,6 +9,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import toast from "react-hot-toast";
+import loginimg from "../../assets/Loginimage.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,7 +47,6 @@ const Login = () => {
       });
   };
 
-  // 🔹 Updated Forget Password handler
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
     navigate("/forget-password", { state: { email } });
@@ -56,16 +56,24 @@ const Login = () => {
     <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-gradient-to-br from-amber-100 via-orange-100 to-rose-50 relative overflow-hidden">
       <MyContainer>
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-amber-800">
-          <div className="max-w-lg text-center lg:text-left">
-            <h1 className="text-5xl font-extrabold drop-shadow-lg">Welcome Back</h1>
-            <p className="mt-4 text-lg text-cyan-950/80 leading-relaxed">
-              Login to continue your journey. Manage your account, explore new features, and more.
-            </p>
+          <div className="max-w-lg flex flex-col md:flex-row items-center justify-center text-center lg:text-left">
+            <img src={loginimg} className="w-60 h-60 md:w-full md:h-full" alt="" />
+            <div>
+              <h1 className="text-5xl font-extrabold drop-shadow-lg">
+                Welcome Back
+              </h1>
+              <p className="mt-4 text-lg text-cyan-950/80 leading-relaxed">
+                Login to continue your journey. Manage your account, explore new
+                features, and more.
+              </p>
+            </div>
           </div>
 
           <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
             <form onSubmit={handleSignin} className="space-y-5">
-              <h2 className="text-2xl font-semibold mb-2 text-center text-amber-950">Login</h2>
+              <h2 className="text-2xl font-semibold mb-2 text-center text-amber-950">
+                Login
+              </h2>
 
               <div>
                 <label className="block text-sm mb-1">Email</label>
@@ -99,10 +107,16 @@ const Login = () => {
               </div>
 
               <div className="flex flex-col gap-2 items-start">
-                <button type="button" className="hover:underline cursor-pointer" onClick={handleForgetPassword}>
+                <button
+                  type="button"
+                  className="hover:underline pb-[10px] cursor-pointer"
+                  onClick={handleForgetPassword}
+                >
                   Forget password?
                 </button>
-                <button type="submit" className="my-btn">Login</button>
+                <button type="submit" className="my-btn">
+                  Login
+                </button>
               </div>
 
               <div className="flex items-center justify-center gap-2 my-2">
@@ -126,7 +140,12 @@ const Login = () => {
 
               <p className="text-center text-sm text-gray-700/80 mt-3">
                 Don’t have an account?{" "}
-                <Link to="/signup" className="text-blue-900 hover:text-blue-400 underline">Sign up</Link>
+                <Link
+                  to="/signup"
+                  className="text-blue-900 hover:text-blue-400 underline"
+                >
+                  Sign up
+                </Link>
               </p>
             </form>
           </div>
