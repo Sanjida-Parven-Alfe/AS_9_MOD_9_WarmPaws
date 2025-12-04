@@ -9,11 +9,10 @@ import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import ForgetPassword from "../pages/Auth/ForgetPassword";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import Contact from "../pages/Contact/Contact";
+import Support from "../pages/Support/Support";
 
-// Placeholder components for new routes
-const About = () => <div className="py-20 text-center text-3xl font-bold text-amber-900">About Us Page Coming Soon</div>;
-const Contact = () => <div className="py-20 text-center text-3xl font-bold text-amber-900">Contact Us Page Coming Soon</div>;
-const Support = () => <div className="py-20 text-center text-3xl font-bold text-amber-900">Support Page Coming Soon</div>;
 
 const router = createBrowserRouter([
   {
@@ -25,19 +24,19 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "services", // This acts as "All Items"
+        path: "services", // All Services Page
         element: <Services />,
       },
       {
-        path: "about",
-        element: <About />,
+        path: "about", // About Us Page
+        element: <AboutUs />,
       },
       {
-        path: "contact",
+        path: "contact", // Contact Page
         element: <Contact />,
       },
       {
-        path: "support",
+        path: "support", // Support Page
         element: <Support />,
       },
       {
@@ -60,8 +59,8 @@ const router = createBrowserRouter([
         path: "forget-password",
         element: <ForgetPassword />,
       },
-      // Service Details বের করে আনা হয়েছে PrivateRouter থেকে
       {
+        // Service Details এখন পাবলিক (PrivateRouter এর বাইরে)
         path: "services/:serviceId",
         element: <ServiceDetails />, 
       },
