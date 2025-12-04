@@ -10,114 +10,73 @@ import DefaultAvatar from "../../assets/account.png";
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
+  // Nav links array
+  const links = (
+    <>
+      <li><MyLink to={"/"}>Home</MyLink></li>
+      <li><MyLink to={"/services"}>All Services</MyLink></li>
+      <li><MyLink to={"/about"}>About Us</MyLink></li>
+      <li><MyLink to={"/contact"}>Contact</MyLink></li>
+      <li><MyLink to={"/support"}>Support</MyLink></li>
+      {/* Profile is conditionally rendered separately or can be here if user exists */}
+      {user && <li><MyLink to={"/profile"}>Profile</MyLink></li>}
+    </>
+  );
+
   return (
-    <div className="navbar bg-white w-full sticky top-0 z-50 shadow-md">
+    // Background changed to amber-50 (Theme relevant) and sticky added
+    <div className="navbar bg-amber-50 w-full sticky top-0 z-50 shadow-md border-b border-amber-200">
       <MyContainer>
-        <div className="navbar bg-white w-full sticky top-0 z-50">
-          <div className="navbar-start">
+        <div className="flex justify-between items-center w-full">
+          <div className="navbar-start w-auto">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn text-black btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
+              <div tabIndex={0} role="button" className="btn text-amber-900 btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                 </svg>
               </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm items-start dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <MyLink to={"/"}>Home</MyLink>
-                </li>
-                <li>
-                  <MyLink to={"/Services"}>Services</MyLink>
-                </li>
-                <li>
-                  <MyLink to={"/Profile"}>Profile</MyLink>
-                </li>
+              <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow text-amber-900">
+                {links}
               </ul>
             </div>
 
-            <Link to="/" className="flex items-center cursor-pointer">
-              <img
-                src={Logo}
-                className="w-[30px] h-[30px] md:w-[50px] md:h-[50px]"
-                alt="WarmPaws Logo"
-              />
-              <span className="text-lg md:text-3xl text-black font-bold px-[5px]">
-                <span className="text-xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                  Warm
-                </span>
-                Paws
+            <Link to="/" className="flex items-center cursor-pointer gap-2">
+              <img src={Logo} className="w-[40px] h-[40px] md:w-[50px] md:h-[50px]" alt="WarmPaws Logo" />
+              <span className="text-xl md:text-2xl lg:text-3xl text-amber-950 font-extrabold tracking-tight">
+                Warm<span className="text-amber-600">Paws</span>
               </span>
             </Link>
           </div>
 
           <div className="navbar-center hidden lg:flex">
-            <ul className="flex items-center gap-4">
-              <li>
-                <MyLink to={"/"}>Home</MyLink>
-              </li>
-              <li>
-                <MyLink to={"/Services"}>Services</MyLink>
-              </li>
-              <li>
-                <MyLink to={"/Profile"}>Profile</MyLink>
-              </li>
+            <ul className="flex items-center gap-6 text-amber-900 font-medium">
+              {links}
             </ul>
           </div>
 
-          <div className="navbar-end gap-2">
+          <div className="navbar-end w-auto gap-3">
             {user ? (
-              <>
-                <div
-                  className="tooltip tooltip-bottom"
-                  data-tip={user.displayName || user.email}
-                >
+              <div className="flex items-center gap-3">
+                <div className="tooltip tooltip-bottom" data-tip={user.displayName || "User"}>
                   <img
                     src={user.photoURL || DefaultAvatar}
                     alt="avatar"
-                    className="w-10 h-10 rounded-full cursor-pointer"
+                    className="w-10 h-10 rounded-full border-2 border-amber-600 object-cover cursor-pointer"
                   />
                 </div>
-
-                <button
-                  onClick={logout}
-                  className="btn p-0 w-10 h-10 border-none rounded-full hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg flex items-center justify-center"
-                >
-                  <img src={Logoutimg} alt="Logout" className="w-10 h-10" />
+                <button onClick={logout} className="btn btn-circle btn-ghost hover:bg-red-100" title="Logout">
+                  <img src={Logoutimg} alt="Logout" className="w-6 h-6" />
                 </button>
-              </>
+              </div>
             ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="btn w-20 font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
-                >
+              <div className="flex gap-2">
+                <Link to="/login" className="px-4 py-2 rounded-lg font-semibold text-amber-700 hover:bg-amber-100 transition">
                   Login
                 </Link>
-
-                <Link
-                  to="/signup"
-                  className="btn w-20 font-semibold rounded-lg text-white border-none bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-400 hover:from-amber-700 hover:via-orange-600 hover:to-yellow-500 hover:scale-105 transition-transform duration-200 shadow-md hover:shadow-lg"
-                >
-                  SignUp
+                <Link to="/signup" className="px-4 py-2 rounded-lg font-semibold text-white bg-amber-600 hover:bg-amber-700 transition shadow-md">
+                  Register
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

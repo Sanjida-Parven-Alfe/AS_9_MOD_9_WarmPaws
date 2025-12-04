@@ -1,13 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Autoplay,
-  Keyboard,
-  Mousewheel,
-} from "swiper/modules";
+import { Navigation, Pagination, Autoplay, Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -19,85 +13,44 @@ import img2 from "../../assets/hero2.jpg";
 import img3 from "../../assets/hero3.webp";
 
 const slides = [
-  {
-    id: 1,
-    image: img1,
-    title: "Cozy Winter Outfits",
-    subtitle: "Keep your pets warm and stylish this winter",
-  },
-  {
-    id: 2,
-    image: img2,
-    title: "Snuggly Pet Care",
-    subtitle: "Grooming & comfort for your furry friends",
-  },
-  {
-    id: 3,
-    image: img3,
-    title: "Winter Walks Made Safe",
-    subtitle: "Protect paws and enjoy outdoor fun",
-  },
+  { id: 1, image: img1, title: "Cozy Winter Outfits", subtitle: "Keep your pets warm and stylish this winter" },
+  { id: 2, image: img2, title: "Snuggly Pet Care", subtitle: "Grooming & comfort for your furry friends" },
+  { id: 3, image: img3, title: "Winter Walks Made Safe", subtitle: "Protect paws and enjoy outdoor fun" },
 ];
 
 const HeroSlider = () => {
   const navigate = useNavigate();
 
-  const handleViewServices = () => {
-    navigate("/services");
-  };
-
   return (
-    <section className="w-full">
+    <section className="w-full h-[65vh] sm:h-[70vh] relative"> 
       <Swiper
         modules={[Navigation, Pagination, Autoplay, Keyboard, Mousewheel]}
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 4500, disableOnInteraction: false }}
         loop
-        keyboard={{ enabled: true }}
-        mousewheel={{ forceToAxis: true }}
-        className="w-full"
+        className="w-full h-full"
       >
         {slides.map((s) => (
           <SwiperSlide key={s.id}>
-            <div className="relative w-full h-[280px] sm:h-[380px] md:h-[480px] lg:h-[560px] overflow-hidden">
-              {/* Background Image */}
-              <img
-                src={s.image}
-                alt={s.title}
-                className="absolute inset-0 w-full h-full object-cover scale-105 brightness-90 transition-transform duration-[4000ms] ease-in-out"
-              />
-
+            <div className="relative w-full h-full">
+              <img src={s.image} alt={s.title} className="absolute inset-0 w-full h-full object-cover brightness-75" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
               
-              <div className="absolute inset-0 bg-black/55 backdrop-blur-[3px]" />
-
-              {/* Caption Content */}
-              <div className="relative z-10 max-w-6xl mx-auto h-full flex items-center justify-center sm:justify-start">
-                <div className="px-4 sm:px-8 md:px-12 lg:px-20 text-center sm:text-left">
-                  <h2 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-wide leading-tight drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] animate__animated animate__fadeInDown animate__delay-500ms">
-                    {s.title}
-                  </h2>
-                  <p className="mt-4 text-white/90 text-base sm:text-lg md:text-2xl lg:text-3xl max-w-2xl tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] animate__animated animate__fadeInUp animate__delay-1000ms">
-                    {s.subtitle}
-                  </p>
-
-                  <div className="mt-6 flex justify-center sm:justify-start gap-4 animate__animated animate__zoomIn animate__delay-1500ms">
-                    <button
-                      onClick={handleViewServices}
-                      className="btn btn-warning btn-md sm:btn-lg border-none shadow-lg shadow-yellow-500/30 transition-all duration-300 transform hover:scale-105 hover:bg-black hover:text-yellow-400"
-                    >
-                      View Services
-                    </button>
-
-                    <button className="btn btn-outline btn-md sm:btn-lg transition-all duration-300 transform hover:scale-105 text-white border-white/40 hover:bg-white/20">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
+              <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+                <h2 className="text-white text-4xl md:text-6xl font-extrabold mb-4 animate__animated animate__fadeInDown">
+                  {s.title}
+                </h2>
+                <p className="text-white/90 text-lg md:text-2xl mb-8 max-w-2xl animate__animated animate__fadeInUp">
+                  {s.subtitle}
+                </p>
+                <button
+                  onClick={() => navigate("/services")}
+                  className="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-full shadow-lg transition transform hover:scale-105 animate__animated animate__zoomIn"
+                >
+                  Explore Services
+                </button>
               </div>
-
-              
-              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.7)] rounded-none" />
             </div>
           </SwiperSlide>
         ))}
