@@ -27,15 +27,15 @@ const Navbar = () => {
       className={({ isActive }) =>
         `relative px-2 py-2 font-bold text-sm md:text-base transition-colors duration-300 cursor-pointer ${
           isActive
-            ? "text-[#F59E0B]" // Active Color (Orange)
-            : "text-[#7D2E4E]" // Default Color (Burgundy) - No Hover Change
+            ? "text-[#F59E0B]" 
+            : "text-[#7D2E4E]" 
         }`
       }
     >
       {({ isActive }) => (
         <>
           {children}
-          {/* Bottom Border Line - Visible only when Active */}
+          
           <span
             className={`absolute bottom-0 left-0 h-[3px] rounded-full bg-[#F59E0B] transition-all duration-300 ${
               isActive ? "w-full" : "w-0"
@@ -51,18 +51,18 @@ const Navbar = () => {
       className={`navbar w-full sticky top-0 z-50 transition-all duration-300 border-b border-[#FBBF24]/20
         ${
           scrolled
-            ? "py-2 shadow-lg backdrop-blur-md bg-[#FFF0F5]/90" // Scrolled (Glassy)
-            : "py-4 shadow-sm bg-[#FFF0F5]" // Default (Solid)
+            ? "py-2 shadow-lg backdrop-blur-md bg-[#FFF0F5]/90" 
+            : "py-4 shadow-sm bg-[#FFF0F5]" 
         }
       `}
     >
       <MyContainer>
         <div className="flex justify-between items-center w-full">
           
-          {/* --- Left Side: Logo & Mobile Menu --- */}
+         
           <div className="navbar-start w-auto flex items-center gap-2">
             
-            {/* Mobile Dropdown */}
+            
             <div className="dropdown lg:hidden">
               <div
                 tabIndex={0}
@@ -98,7 +98,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* --- Center: Desktop Menu --- */}
+          {/* Desktop Menu */}
           <div className="navbar-center hidden lg:flex">
             <ul className="flex items-center gap-8">
               <NavItem to="/">Home</NavItem>
@@ -110,14 +110,14 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* --- Right Side: Auth Buttons --- */}
+          
           <div className="navbar-end w-auto gap-3 flex items-center">
             
             {user ? (
               // Logged In View
               <div className="flex items-center gap-4">
                 
-                {/* 1. Avatar with Name Tooltip */}
+                {/* Avatar with Name Tooltip */}
                 <div 
                     className="tooltip tooltip-bottom z-50" 
                     data-tip={user.displayName || "User"} 
@@ -131,7 +131,7 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                {/* 2. Logout Button with Tooltip (Size matched: w-10 h-10) */}
+                {/* Logout Button with Tooltip (Size matched: w-10 h-10) */}
                 <div 
                     className="tooltip tooltip-bottom z-50" 
                     data-tip="Logout"
