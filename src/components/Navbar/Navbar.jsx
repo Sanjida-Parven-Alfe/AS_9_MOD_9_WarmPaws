@@ -20,7 +20,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Custom NavItem Component
+  
   const NavItem = ({ to, children }) => (
     <NavLink
       to={to}
