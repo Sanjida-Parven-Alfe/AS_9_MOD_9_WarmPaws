@@ -77,7 +77,7 @@ const ServiceDetails = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* --- LEFT SIDE: Image & Details --- */}
+         
             <div className="lg:col-span-2 space-y-8">
                 
                 {/* Image Card */}
