@@ -67,7 +67,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* --- Why Choose Us (Stats) --- */}
+    
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
