@@ -121,7 +121,7 @@ const Profile = () => {
                 <p className="text-xs text-gray-400 mt-1 pl-1">* Email cannot be changed</p>
               </div>
 
-              {/* Photo URL Input */}
+             
               <div>
                 <label className="block text-sm font-bold text-[#7D2E4E] mb-2 pl-1">Photo URL</label>
                 <div className="relative">
