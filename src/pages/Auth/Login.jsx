@@ -130,7 +130,7 @@ const Login = () => {
                     </button>
                 </div>
                 
-                {/* Forget Password Link */}
+              
                 <div className="flex justify-end mt-2">
                     <button
                         type="button"
