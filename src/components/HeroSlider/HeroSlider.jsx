@@ -34,7 +34,7 @@ const HeroSlider = () => {
         {slides.map((s) => (
           <SwiperSlide key={s.id}>
             <div className="relative w-full h-full">
-              {/* Background Image with Blur */}
+             
               <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img 
                     src={s.image} 
