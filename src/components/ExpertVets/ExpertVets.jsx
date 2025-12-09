@@ -1,6 +1,5 @@
 import React from "react";
 
-// Static data
 const vetsData = [
   {
     id: 1,
