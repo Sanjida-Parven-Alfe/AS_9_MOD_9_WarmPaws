@@ -8,7 +8,7 @@ const AboutUs = () => {
       
       {/* --- Hero Section --- */}
       <section className="relative py-20 bg-[#7D2E4E] text-white overflow-hidden">
-        {/* Background Pattern */}
+ 
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#F59E0B] rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#FBBF24] rounded-full blur-3xl opacity-20 -ml-16 -mb-16"></div>
         
