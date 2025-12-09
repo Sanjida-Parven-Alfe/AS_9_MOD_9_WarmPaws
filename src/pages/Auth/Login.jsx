@@ -56,7 +56,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FFF0F5] relative overflow-hidden py-10">
       
-      {/* Background Decorative Blobs */}
+  
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-3xl -ml-20 -mt-20 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#7D2E4E]/10 rounded-full blur-3xl -mr-20 -mb-20 pointer-events-none"></div>
 
